@@ -2,12 +2,20 @@ package nl.lorrain.tva.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+
+import nl.lorrain.tva.annotation.UniqueEmail;
+import nl.lorrain.tva.annotation.UniqueUsername;
 
 @Entity
 public class User {
@@ -16,10 +24,18 @@ public class User {
 	@GeneratedValue
 	private Integer id;
 
+	@Column(unique=true)
+	@Size(min=3, message="Name must be at least 3 characters!")
+	@UniqueUsername(message="Username already in use!")
 	private String name;
-
+	
+	@Column(unique=true)
+	@Size(min=1, message="Invalid e-mail adress!")
+	@Email(message="Invalid e-mail adress!")
+	@UniqueEmail(message="E-mail adress already in use!")
 	private String email;
 
+	@Size(min=5, message="Name must be at least 5 characters!")
 	private String password;
 
 	private Boolean enabled;
@@ -28,7 +44,7 @@ public class User {
 	@JoinTable
 	private List<Role> roles;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE)
 	private List<Blog> blogs;
 
 	public Boolean getEnabled() {

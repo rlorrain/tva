@@ -5,6 +5,53 @@
 	prefix="tilesx"%>
 <%@taglib uri="http://www.springframework.org/security/tags"
 	prefix="security"%>
+	
+<style>
+.form-signin {
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
+	margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+	font-weight: normal;
+}
+
+.form-signin .form-control {
+	position: relative;
+	height: auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+	z-index: 2;
+}
+
+.form-signin input[type="email"] {
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.btn-xs.navbar-btn {
+    margin-top: 12px;
+    margin-left: 5px;
+}
+</style>
 
 <tilesx:useAttribute name="current" />
 
@@ -24,18 +71,31 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="${current == 'index' ? 'active' : ''}"><a href='<spring:url value="/" />'>Home</a></li>
+					<li class="${current == 'index' ? 'active' : ''}">
+						<a href='<spring:url value="/" />'>Home</a>
+					</li>
+					<li class="${current == 'tournaments' ? 'active' : ''}">
+						<a href='<spring:url value="/tournaments.html" />'>Tournaments</a>
+					</li>
 					<security:authorize access="hasRole('ROLE_ADMIN')"> 
-						<li class="${current == 'users' ? 'active' : ''}"><a href='<spring:url value="/users.html" />'>Users</a></li>
+						<li class="${current == 'users' ? 'active' : ''}">
+							<a href='<spring:url value="/users.html" />'>Users</a>
+						</li>
 					</security:authorize>
-					<security:authorize access="hasRole('ROLE_ADMIN', 'ROLE_USER')"> 
-						<li class="${current == 'users' ? 'active' : ''}"><a href='<spring:url value="/account.html" />'>My account</a></li>
+					<security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">  
+						<li class="${current == 'account' ? 'active' : ''}">
+							<a href='<spring:url value="/account.html" />'>My account</a>
+						</li>
 					</security:authorize>					
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<security:authorize access="!isAuthenticated()">
-						<li class="${current == 'login' ? 'active' : ''}"><a href='<spring:url value="/login.html" />'>Login</a></li>
-						<li class="${current == 'register' ? 'active' : ''}"><a href='<spring:url value="/register.html" />'>Register</a></li>
+						<li class="${current == 'user-register' ? 'active' : ''}">
+							<button type="button" id="registerButton" class="btn btn-default btn-xs navbar-btn" >Register</button>
+						</li>
+						<li class="${current == 'login' ? 'active' : ''}">
+							<button type="button" class="btn btn-default btn-xs navbar-btn" data-toggle="modal" data-target="#modalLogin">Login</button>
+						</li>
 					</security:authorize>
 					<security:authorize access="isAuthenticated()">	
 						<li><a href='<spring:url value="/logout" />'>Logout</a></li>
@@ -45,3 +105,36 @@
 		</div><!--/.container-fluid -->
 	</nav>
 </div><!-- /container -->
+
+<!-- Modal login -->
+<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+	      	<div class="modal-header">
+	        	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+	        	<h4 class="modal-title" id="myModalLabel">Login</h4>
+	      	</div>
+	      	<div class="modal-body">
+	        
+	        <form class="form-signin" action="/login" method="POST">
+				<h2 class="form-signin-heading">Please sign in</h2>
+				<input type="text" name="username" class="form-control" placeholder="Name" required autofocus> 
+				<input type="password" name="password" class="form-control" placeholder="Password" required>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+			</form>
+	        
+	      	</div>
+	      	<div class="modal-footer">
+	        	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	      	</div>
+    	</div>
+  	</div>
+</div><!-- Modal login -->
+
+<script type="text/javascript">
+    document.getElementById("registerButton").onclick = function () {
+        location.href = "/register.html";}
+        document.getElementById("logoutButton").onclick = function () {
+            location.href = "/logout";    
+    };
+</script>

@@ -215,6 +215,12 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${org.hibernate-entitymanager.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${org.hibernate-validator.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.hsqldb</groupId>
@@ -228,6 +234,7 @@
 		<org.spring-data-jpa.version>1.9.2.RELEASE</org.spring-data-jpa.version>
 		<org.springsecurity.version>4.0.3.RELEASE</org.springsecurity.version>
 		<org.hibernate-entitymanager.version>5.0.7.Final</org.hibernate-entitymanager.version>
+		<org.hibernate-validator.version>5.2.2.Final</org.hibernate-validator.version>
 		<apache.tiles.version>3.0.5</apache.tiles.version>
 		<org.slf4j.version>1.7.13</org.slf4j.version>
 		<jstl.version>1.2</jstl.version>

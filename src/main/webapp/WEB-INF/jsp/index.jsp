@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <div class="text-center">
-	Hello, from spring web MVC!
+	Hello, in index.
 </div><!-- /text-center -->
 
 
