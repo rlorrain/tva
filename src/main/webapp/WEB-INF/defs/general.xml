@@ -11,7 +11,32 @@
 	</definition>
 	
 	<definition name="index" extends="common">
-		<put-attribute name="title" value="Lorrain.nl" />
+		<put-attribute name="title" value="Index" />
 		<put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
+		<put-attribute name="current" cascade="true" value="index" />
+	</definition>
+	
+	<definition name="users" extends="common">
+		<put-attribute name="title" value="Users" />
+		<put-attribute name="body" value="/WEB-INF/jsp/users.jsp" />
+		<put-attribute name="current" cascade="true" value="users" />
+	</definition>
+	
+	<definition name="user-detail" extends="common">
+		<put-attribute name="title" value="User Details" />
+		<put-attribute name="body" value="/WEB-INF/jsp/user-detail.jsp" />
+		<put-attribute name="current" cascade="true" value="users" />
+	</definition>
+	
+	<definition name="user-register" extends="common">
+		<put-attribute name="title" value="User Registration" />
+		<put-attribute name="body" value="/WEB-INF/jsp/user-register.jsp" />
+		<put-attribute name="current" cascade="true" value="register" />
+	</definition>
+	
+	<definition name="login" extends="common">
+		<put-attribute name="title" value="Login" />
+		<put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+		<put-attribute name="current" cascade="true" value="login" />
 	</definition>
 </tiles-definitions>

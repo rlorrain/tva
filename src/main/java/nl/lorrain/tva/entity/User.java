@@ -7,25 +7,46 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
-	
+
 	@Id
 	@GeneratedValue
 	private Integer id;
-	
+
 	private String name;
-	
+
 	private String email;
-	
+
 	private String password;
-	
+
+	private Boolean enabled;
+
 	@ManyToMany
 	@JoinTable
 	private List<Role> roles;
-	
+
+	@OneToMany(mappedBy = "user")
+	private List<Blog> blogs;
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public List<Blog> getBlogs() {
+		return blogs;
+	}
+
+	public void setBlogs(List<Blog> blogs) {
+		this.blogs = blogs;
+	}
+
 	public List<Role> getRoles() {
 		return roles;
 	}
@@ -61,7 +82,7 @@ public class User {
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}

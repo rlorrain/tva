@@ -26,7 +26,6 @@
 	</build>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -166,7 +165,25 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
-			<version>1.9.2.RELEASE</version>
+			<version>${org.spring-data-jpa.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${org.springsecurity.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${org.springsecurity.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${org.springsecurity.version}</version>
 		</dependency>
 
 		<dependency>
@@ -184,26 +201,36 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.13</version>
+			<version>${org.slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>5.0.7.Final</version>
+			<version>${org.hibernate-entitymanager.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
-			<version>2.3.3</version>
+			<version>${org.hsqldb.version}</version>
 		</dependency>
-
 	</dependencies>
 
 	<properties>
 		<org.springframework.version>4.2.4.RELEASE</org.springframework.version>
+		<org.spring-data-jpa.version>1.9.2.RELEASE</org.spring-data-jpa.version>
+		<org.springsecurity.version>4.0.3.RELEASE</org.springsecurity.version>
+		<org.hibernate-entitymanager.version>5.0.7.Final</org.hibernate-entitymanager.version>
 		<apache.tiles.version>3.0.5</apache.tiles.version>
+		<org.slf4j.version>1.7.13</org.slf4j.version>
+		<jstl.version>1.2</jstl.version>
+		<org.hsqldb.version>2.3.3</org.hsqldb.version>
 	</properties>
-
 </project>

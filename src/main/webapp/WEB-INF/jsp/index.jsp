@@ -3,6 +3,6 @@
 
 <div class="text-center">
 	Hello, from spring web MVC!
-</div>
+</div><!-- /text-center -->
 
 
