@@ -19,6 +19,7 @@ import nl.lorrain.tva.repository.BlogRepository;
 import nl.lorrain.tva.repository.ItemRepository;
 import nl.lorrain.tva.repository.RoleRepository;
 import nl.lorrain.tva.repository.UserRepository;
+import nl.lorrain.tva.type.RoleType;
 
 @Service
 public class InitDbService {
@@ -39,13 +40,14 @@ public class InitDbService {
 	@PostConstruct
 	public void init() {
 		Role roleUser = new Role();
-		roleUser.setName("ROLE_USER");
+		roleUser.setName(RoleType.ROLE_USER);
 		roleRepository.save(roleUser);
 		
 		Role roleAdmin = new Role();
-		roleAdmin.setName("ROLE_ADMIN");
+		roleAdmin.setName(RoleType.ROLE_ADMIN);
 		roleRepository.save(roleAdmin);
 		
+		// Create admin user
 		User userAdmin = new User();
 		userAdmin.setEnabled(true);
 		userAdmin.setName("admin");
@@ -57,10 +59,21 @@ public class InitDbService {
 		userAdmin.setRoles(roles);
 		userRepository.save(userAdmin);
 		
+		// Create test user
+		User userTest = new User();
+		userTest.setEnabled(true);
+		userTest.setName("test");
+		BCryptPasswordEncoder encoderTest = new BCryptPasswordEncoder();
+		userTest.setPassword(encoderTest.encode("test"));
+		List<Role> rolesTest = new ArrayList<Role>();
+		rolesTest.add(roleUser);
+		userTest.setRoles(rolesTest);
+		userRepository.save(userTest);
+		
 		Blog blogJavavids = new Blog();
 		blogJavavids.setName("JavaVids");
 		blogJavavids.setUrl("http://feeds.feedburner.com/javavids?format=xml");
-		blogJavavids.setUser(userAdmin);
+		blogJavavids.setUser(userTest);
 		blogRepository.save(blogJavavids);
 		
 		Item item1 = new Item();

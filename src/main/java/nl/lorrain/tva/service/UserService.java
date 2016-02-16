@@ -3,6 +3,7 @@ package nl.lorrain.tva.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
@@ -45,6 +46,7 @@ public class UserService {
 
 	public User findOneWithBlogs(int id) {
 		User user = findOne(id);
+		Hibernate.initialize(user.getRoles());
 		List<Blog> blogs = blogRepository.findByUser(user);
 		for (Blog blog : blogs) {
 			List<Item> items = itemRepository.findByBlog(blog, new PageRequest(0, 10, Direction.DESC, "publishedDate"));
@@ -79,5 +81,17 @@ public class UserService {
 
 	public User findOneByEmail(String email) {
 		return userRepository.findByEmail(email);
+	}
+
+	public void removeRoleFromUser(String roleName, User user) {
+		List<Role> roles = user.getRoles();
+		for (Role role : roles) {
+			if (role.getName().equals(roleName)){
+				roles.remove(role);
+				break;
+			}
+		}
+		user.setRoles(roles);
+		userRepository.save(user);
 	}
 }

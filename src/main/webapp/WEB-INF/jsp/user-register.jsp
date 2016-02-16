@@ -4,7 +4,6 @@
 
 <div class="container">
 	<form:form commandName="user" class="form-horizontal registrationForm">
-		
 		<c:if test="${param.success eq true}">
 			<div class="alert alert-success">Registration successful!</div>
 		</c:if>

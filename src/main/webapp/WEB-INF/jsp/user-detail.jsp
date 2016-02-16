@@ -3,64 +3,66 @@
 <%@ include file="../layout/general/taglib.jsp"%>
 
 <div class="container">
-	<h1>${user.name}</h1>
-
-	<br>
+	
+		<h1><c:out value="${user.name}" /></h1> 
+	
+		<br>
 	
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs">
-		<c:forEach items="${user.blogs}" var="blog">
-			<li><a href="#blog_${blog.id}" data-toggle="tab"><c:out value="${blog.name}" /></a></li>
-		</c:forEach>
+		<li><a href="#overview" data-toggle="tab">Overview</a></li>
+		<li><a href="#roles" data-toggle="tab">Roles</a></li>
 	</ul><!-- /Nav tabs -->
 
 	<!-- Tab panes -->
 	<div class="tab-content">
-		<c:forEach items="${user.blogs}" var="blog">
-			<div class="tab-pane" id="blog_${blog.id}">
-				<h1><c:out value="${blog.name}" /></h1>
-				<p>
-				<a href="<spring:url value="/blog/remove/${blog.id}.html" />" class="btn btn-danger triggerRemove">remove blog</a>
-				<c:out value="${blog.url}" /></p>
-				<table class="table table-bordered table-hover table-striped">
-					<thead>
+		<div class="tab-pane" id="overview">
+		
+		</div>
+		<div class="tab-pane" id="roles">
+			<br>
+			<table class="table table-bordered table-hover table-striped">
+				<thead>
+					<tr>
+						<th>Role</th>
+						<th>Remove</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${user.roles}" var="role">
 						<tr>
-							<th>Title</th>
-							<th>Link</th>
+							<td><c:out value="${role.name}" /></td>
+							<td><c:if test="${user.name != 'admin'}">
+								<a href='<spring:url value="/users/${user.id}/${role.name}.html" />' class="btn btn-danger triggerRemove">
+									<span class="glyphicon glyphicon-trash" aria-hidden="true" ></span>
+								</a>
+							</c:if></td>
 						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${blog.items}" var="item">
-							<tr>
-								<td><c:out value="${item.title}" /></td>
-								<td><c:out value="${item.link}" /></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-		</c:forEach>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 	</div><!-- /Tab panes -->
-	
-	<!-- Modal -->
-	<div class="modal fade" id="modalRemove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  	<div class="modal-dialog">
-	    	<div class="modal-content">
-		      	<div class="modal-header">
-		        	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-		        	<h4 class="modal-title" id="myModalLabel">Remove Blog</h4>
-		      	</div>
-		      	<div class="modal-body">
-		        Really want to remove?
-		      	</div>
-		      	<div class="modal-footer">
-		        	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-		        	<a href="" class="btn btn-danger removeBtn">Remove</a>
-		      	</div>
-	    	</div>
-	  	</div>
-	</div>
 </div><!-- /container -->
+
+<!-- Modal remove -->
+<div class="modal fade" id="modalRemove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+	      	<div class="modal-header">
+	        	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+	        	<h4 class="modal-title" id="myModalLabel">Remove Blog</h4>
+	      	</div>
+	      	<div class="modal-body">
+	        Really want to remove?
+	      	</div>
+	      	<div class="modal-footer">
+	        	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	        	<a href="" class="btn btn-danger removeBtn">Remove</a>
+	      	</div>
+    	</div>
+  	</div>
+</div><!-- /Modal remove -->
 
 <script type="text/javascript">
 	$(document).ready(function() {

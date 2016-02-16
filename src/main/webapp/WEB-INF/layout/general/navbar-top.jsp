@@ -77,12 +77,7 @@
 					<li class="${current == 'tournaments' ? 'active' : ''}">
 						<a href='<spring:url value="/tournaments.html" />'>Tournaments</a>
 					</li>
-					<security:authorize access="hasRole('ROLE_ADMIN')"> 
-						<li class="${current == 'users' ? 'active' : ''}">
-							<a href='<spring:url value="/users.html" />'>Users</a>
-						</li>
-					</security:authorize>
-					<security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">  
+					<security:authorize access="isAuthenticated()">  
 						<li class="${current == 'account' ? 'active' : ''}">
 							<a href='<spring:url value="/account.html" />'>My account</a>
 						</li>
@@ -98,7 +93,12 @@
 						</li>
 					</security:authorize>
 					<security:authorize access="isAuthenticated()">	
-						<li><a href='<spring:url value="/logout" />'>Logout</a></li>
+						<li><span><a type="button" class="btn btn-primary btn-xs navbar-btn" href='<spring:url value="/logout" />'>Logout</a></span></li>
+					</security:authorize>
+					<security:authorize access="hasRole('ROLE_ADMIN')"> 
+						<li class="${current == 'users' ? 'active' : ''}">
+							<span><a class="btn btn-primary btn-xs navbar-btn" href='<spring:url value="/users.html" />'><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></span>
+						</li>
 					</security:authorize>
 				</ul>
 			</div><!--/.nav-collapse -->
@@ -121,6 +121,10 @@
 				<input type="text" name="username" class="form-control" placeholder="Name" required autofocus> 
 				<input type="password" name="password" class="form-control" placeholder="Password" required>
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+				<br>
+				<div class="text-center">
+					<a href="#">Forgot password</a> | <a href='<spring:url value="register.html" />'>Register</a>
+				</div>
 			</form>
 	        
 	      	</div>
@@ -133,8 +137,6 @@
 
 <script type="text/javascript">
     document.getElementById("registerButton").onclick = function () {
-        location.href = "/register.html";}
-        document.getElementById("logoutButton").onclick = function () {
-            location.href = "/logout";    
+        location.href = "/register.html"  
     };
 </script>

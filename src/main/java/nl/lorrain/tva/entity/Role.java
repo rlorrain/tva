@@ -2,10 +2,13 @@ package nl.lorrain.tva.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+import nl.lorrain.tva.type.RoleType;
 
 @Entity
 public class Role {
@@ -16,7 +19,7 @@ public class Role {
 
 	private String name;
 
-	@ManyToMany(mappedBy = "roles")
+	@ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
 	private List<User> users;
 
 	public List<User> getUsers() {
@@ -39,7 +42,7 @@ public class Role {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setName(RoleType roleType) {
+		this.name = roleType.toString();
 	}
 }
