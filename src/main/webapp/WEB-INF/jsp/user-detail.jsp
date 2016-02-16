@@ -16,9 +16,11 @@
 
 	<!-- Tab panes -->
 	<div class="tab-content">
+	
 		<div class="tab-pane" id="overview">
 		
-		</div>
+		</div><!-- /Tab overview -->
+		
 		<div class="tab-pane" id="roles">
 			<br>
 			<table class="table table-bordered table-hover table-striped">
@@ -41,9 +43,49 @@
 					</c:forEach>
 				</tbody>
 			</table>
-		</div>
+			<br>
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm">Add role</button>
+		</div><!-- /Tab roles -->
+
 	</div><!-- /Tab panes -->
 </div><!-- /container -->
+
+<!-- Model add blog -->
+<form:form commandName="role" cssClass="form-horizontal blogForm">
+	<div class="modal fade bs-example-modal-sm" id="modalAddRole" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Add new role to user.</h4>
+				</div>
+				<div class="modal-body">
+				
+					<div class="form-group">
+					<label for="name" class="col-sm-2 control-label">Name:</label>
+						<div class="col-sm-10">
+							<form:select path="name">
+								<form:option value="ROLE_ADMIN">ROLE_ADMIN</form:option>
+								<form:option value="ROLE_SUPERUSER">ROLE_SUPERUSER</form:option>
+								<form:option value="ROLE_USER">ROLE_USER</form:option>
+							</form:select>
+						</div>
+					</div><!-- /form-group -->
+															
+				</div><!-- /modal-body -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<input type="submit" class="btn btn-primary" value="save">
+				</div><!-- /modal-footer -->
+			</div>
+		</div>
+	</div>
+</form:form><!-- /modal add blog -->
 
 <!-- Modal remove -->
 <div class="modal fade" id="modalRemove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

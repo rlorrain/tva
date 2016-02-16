@@ -30,6 +30,7 @@
 								<form:errors path="name" />
 							</div>
 						</div><!-- /form-group -->
+						
 						<div class="form-group">
 							<label for="name" class="col-sm-2 control-label">URL:</label>
 							<div class="col-sm-10">

@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-
 import nl.lorrain.tva.type.RoleType;
 
 @Entity
@@ -19,7 +19,7 @@ public class Role {
 
 	private String name;
 
-	@ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy="roles", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<User> users;
 
 	public List<User> getUsers() {

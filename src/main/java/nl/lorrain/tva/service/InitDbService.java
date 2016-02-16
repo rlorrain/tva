@@ -39,13 +39,18 @@ public class InitDbService {
 	@Transactional
 	@PostConstruct
 	public void init() {
-		Role roleUser = new Role();
-		roleUser.setName(RoleType.ROLE_USER);
-		roleRepository.save(roleUser);
 		
 		Role roleAdmin = new Role();
 		roleAdmin.setName(RoleType.ROLE_ADMIN);
 		roleRepository.save(roleAdmin);
+		
+		Role roleSuperUser = new Role();
+		roleSuperUser.setName(RoleType.ROLE_SUPERUSER);
+		roleRepository.save(roleSuperUser);
+		
+		Role roleUser = new Role();
+		roleUser.setName(RoleType.ROLE_USER);
+		roleRepository.save(roleUser);
 		
 		// Create admin user
 		User userAdmin = new User();
@@ -55,6 +60,7 @@ public class InitDbService {
 		userAdmin.setPassword(encoder.encode("admin"));
 		List<Role> roles = new ArrayList<Role>();
 		roles.add(roleAdmin);
+		roles.add(roleSuperUser);
 		roles.add(roleUser);
 		userAdmin.setRoles(roles);
 		userRepository.save(userAdmin);

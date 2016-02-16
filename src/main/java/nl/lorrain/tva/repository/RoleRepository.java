@@ -5,6 +5,6 @@ import nl.lorrain.tva.entity.Role;
 
 public interface RoleRepository extends JpaRepository<Role, Integer> {
 
-	Role findByName(String string);
+	Role findOneByName(String name);
 
 }

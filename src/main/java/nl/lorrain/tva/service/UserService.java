@@ -41,7 +41,10 @@ public class UserService {
 	}
 
 	public User findOne(int id) {
-		return userRepository.findOne(id);
+		User user = userRepository.findOne(id);
+		Hibernate.initialize(user.getBlogs());
+		Hibernate.initialize(user.getRoles());
+		return user;
 	}
 
 	public User findOneWithBlogs(int id) {
@@ -66,7 +69,7 @@ public class UserService {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		user.setPassword(encoder.encode(user.getPassword()));
 		List<Role> roles = new ArrayList<Role>();
-		roles.add(roleRepository.findByName("ROLE_USER"));
+		roles.add(roleRepository.findOneByName("ROLE_USER"));
 		user.setRoles(roles);
 		userRepository.save(user);
 	}
@@ -84,14 +87,52 @@ public class UserService {
 	}
 
 	public void removeRoleFromUser(String roleName, User user) {
-		List<Role> roles = user.getRoles();
+		User updateUser = userRepository.findOne(user.getId());
+		List<Role> roles = updateUser.getRoles();
 		for (Role role : roles) {
 			if (role.getName().equals(roleName)){
 				roles.remove(role);
 				break;
 			}
 		}
-		user.setRoles(roles);
+		updateUser.setRoles(roles);
+		userRepository.save(updateUser);
+		
+		Role updateRole = roleRepository.findOneByName(roleName);
+		List<User> users = updateRole.getUsers();
+		for(User user2 : users) {
+			if (user2.getName().equals(roleName)){
+				users.remove(user2);
+			}
+		}
+		updateRole.setUsers(users);
+		roleRepository.save(updateRole);
+	}
+
+	public void addRoleToUser(Role roleToAdd, int userId) {
+		User user = userRepository.findOne(userId);
+		Role newRole = roleRepository.findOneByName(roleToAdd.getName());
+		List<Role> roles = user.getRoles();
+		if (roles.contains(newRole)) {
+			System.out.println("User already has the role");
+		} else {
+			roles.add(newRole);
+			user.setRoles(roles);
+			System.out.println("" + newRole + " added to " + user.getName());
+		}
+		
+		
+		Role role = roleRepository.findOneByName(roleToAdd.getName());
+		User newUser = userRepository.findOne(userId);
+		List<User> users = role.getUsers();
+		if (users.contains(newUser)) {
+			System.out.println("Role already knows this User");
+		} else {
+			users.add(newUser);
+			role.setUsers(users);
+			System.out.println("" + newUser + " added to " + role.getName());
+		}
 		userRepository.save(user);
+		roleRepository.save(role);
 	}
 }
