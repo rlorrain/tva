@@ -34,7 +34,7 @@ public class UserController {
 	@RequestMapping("/account")
 	public String account(Model model, Principal principal) {
 		String name = principal.getName();
-		model.addAttribute("user", userService.findOneWithBlogs(name));
+		model.addAttribute("user", userService.findOneWithBlogItems(userService.findOneByName(name).getId()));
 		return "account";
 	}
 	

@@ -3,7 +3,6 @@ package nl.lorrain.tva.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
@@ -36,20 +35,32 @@ public class UserService {
 	@Autowired
 	private ItemRepository itemRepository;
 	
+	@Autowired
+	private RoleService roleService;
+	
 	public List<User> findAll() {
-		return userRepository.findAll();
+		List<User> users = userRepository.findAll();
+		return users;
 	}
 
-	public User findOne(int id) {
+	public User findOneById(int id) {
 		User user = userRepository.findOne(id);
-		Hibernate.initialize(user.getBlogs());
-		Hibernate.initialize(user.getRoles());
+		return user;
+	}
+	
+	public User findOneByName(String name) {
+		User user = userRepository.findByName(name);
 		return user;
 	}
 
-	public User findOneWithBlogs(int id) {
-		User user = findOne(id);
-		Hibernate.initialize(user.getRoles());
+	public User findOneByEmail(String email) {
+		User user = userRepository.findByEmail(email);
+		return user;
+	}
+
+	@Deprecated
+	public User findOneWithBlogItems(int id) {
+		User user = userRepository.findOne(id);
 		List<Blog> blogs = blogRepository.findByUser(user);
 		for (Blog blog : blogs) {
 			List<Item> items = itemRepository.findByBlog(blog, new PageRequest(0, 10, Direction.DESC, "publishedDate"));
@@ -57,11 +68,6 @@ public class UserService {
 		}
 		user.setBlogs(blogs);
 		return user;
-	}
-	
-	public User findOneWithBlogs(String name) {
-		User user = userRepository.findByName(name);
-		return findOneWithBlogs(user.getId());
 	}
 
 	public void save(User user) {
@@ -74,65 +80,35 @@ public class UserService {
 		userRepository.save(user);
 	}
 
-	public void delete(int id) {
-		userRepository.delete(id);		
+	public void delete(User user) {
+		userRepository.delete(user);
 	}
 
-	public User findOne(String username) {
-		return userRepository.findByName(username);
-	}
-
-	public User findOneByEmail(String email) {
-		return userRepository.findByEmail(email);
-	}
-
-	public void removeRoleFromUser(String roleName, User user) {
-		User updateUser = userRepository.findOne(user.getId());
-		List<Role> roles = updateUser.getRoles();
-		for (Role role : roles) {
-			if (role.getName().equals(roleName)){
-				roles.remove(role);
-				break;
-			}
-		}
-		updateUser.setRoles(roles);
-		userRepository.save(updateUser);
-		
-		Role updateRole = roleRepository.findOneByName(roleName);
-		List<User> users = updateRole.getUsers();
-		for(User user2 : users) {
-			if (user2.getName().equals(roleName)){
-				users.remove(user2);
-			}
-		}
-		updateRole.setUsers(users);
-		roleRepository.save(updateRole);
-	}
-
-	public void addRoleToUser(Role roleToAdd, int userId) {
-		User user = userRepository.findOne(userId);
-		Role newRole = roleRepository.findOneByName(roleToAdd.getName());
+	public void removeRoleFromUser(String roleName, String userName) {
+		Role role = roleRepository.findOneByName(roleName);
+		User user = userRepository.findByName(userName);
 		List<Role> roles = user.getRoles();
-		if (roles.contains(newRole)) {
-			System.out.println("User already has the role");
-		} else {
-			roles.add(newRole);
+		if (roles.contains(role)) {
+			roles.remove(role);
 			user.setRoles(roles);
-			System.out.println("" + newRole + " added to " + user.getName());
-		}
-		
-		
-		Role role = roleRepository.findOneByName(roleToAdd.getName());
-		User newUser = userRepository.findOne(userId);
-		List<User> users = role.getUsers();
-		if (users.contains(newUser)) {
-			System.out.println("Role already knows this User");
+			userRepository.save(user);
+			roleService.addUserToRole(userName, roleName);
 		} else {
-			users.add(newUser);
-			role.setUsers(users);
-			System.out.println("" + newUser + " added to " + role.getName());
+			System.out.println("User " + user.getName() + " does not have role " + role.getName());
 		}
-		userRepository.save(user);
-		roleRepository.save(role);
+	}
+
+	public void addRoleToUser(String roleName, String userName) {
+		Role role = roleRepository.findOneByName(roleName);
+		User user = userRepository.findByName(userName);
+		List<Role> roles = user.getRoles();
+		if (roles.contains(role)) {
+			System.out.println("User " + user.getName() + " already has role " + role.getName());
+		} else {
+			roles.add(role);
+			user.setRoles(roles);
+			userRepository.save(user);
+			roleService.addUserToRole(userName, roleName);
+		}
 	}
 }

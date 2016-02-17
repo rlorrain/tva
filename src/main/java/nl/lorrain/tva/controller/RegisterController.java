@@ -43,7 +43,7 @@ public class RegisterController {
 	@RequestMapping("/validateUsername")
 	@ResponseBody
 	public String validateUsername(@RequestParam String username) {
-		Boolean available = userService.findOne(username) == null;
+		Boolean available = userService.findOneByName(username) == null;
 		return available.toString();
 	}
 	
