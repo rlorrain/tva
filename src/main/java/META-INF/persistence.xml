@@ -5,5 +5,8 @@
 		<class>nl.lorrain.tva.entity.Item</class>
 		<class>nl.lorrain.tva.entity.Role</class>
 		<class>nl.lorrain.tva.entity.User</class>
+		<class>nl.lorrain.tva.entity.Tournament</class>
+		<class>nl.lorrain.tva.entity.Categorie</class>
+		<class>nl.lorrain.tva.entity.Player</class>
 	</persistence-unit>
 </persistence>

@@ -21,6 +21,10 @@
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.3.7.RC1</version>
+				<configuration>
+					<stopPort>8080</stopPort>
+					<stopKey>foo</stopKey>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

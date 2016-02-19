@@ -11,15 +11,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import nl.lorrain.tva.entity.Blog;
-import nl.lorrain.tva.entity.Item;
+import nl.lorrain.tva.entity.Categorie;
 import nl.lorrain.tva.entity.Role;
+import nl.lorrain.tva.entity.Tournament;
 import nl.lorrain.tva.entity.User;
-import nl.lorrain.tva.repository.BlogRepository;
-import nl.lorrain.tva.repository.ItemRepository;
+import nl.lorrain.tva.repository.CategorieRepository;
 import nl.lorrain.tva.repository.RoleRepository;
+import nl.lorrain.tva.repository.TournamentRepository;
 import nl.lorrain.tva.repository.UserRepository;
+import nl.lorrain.tva.type.AgeCategorieType;
 import nl.lorrain.tva.type.RoleType;
+import nl.lorrain.tva.type.StrengthCategorieType;
+import nl.lorrain.tva.type.matchType;
 
 @Service
 public class InitDbService {
@@ -31,23 +34,26 @@ public class InitDbService {
 	private UserRepository userRepository;
 	
 	@Autowired
-	private BlogRepository blogRepository;
+	private TournamentRepository tournamentRepository;
 	
 	@Autowired
-	private ItemRepository itemRepository;
+	private CategorieRepository categorieRepository;
 	
 	@Transactional
 	@PostConstruct
 	public void init() {
 		
+		// Create role admin
 		Role roleAdmin = new Role();
 		roleAdmin.setName(RoleType.ROLE_ADMIN);
 		roleRepository.save(roleAdmin);
 		
+		// Create role superuser
 		Role roleSuperUser = new Role();
 		roleSuperUser.setName(RoleType.ROLE_SUPERUSER);
 		roleRepository.save(roleSuperUser);
 		
+		// Create role user
 		Role roleUser = new Role();
 		roleUser.setName(RoleType.ROLE_USER);
 		roleRepository.save(roleUser);
@@ -76,24 +82,22 @@ public class InitDbService {
 		userTest.setRoles(rolesTest);
 		userRepository.save(userTest);
 		
-		Blog blogJavavids = new Blog();
-		blogJavavids.setName("JavaVids");
-		blogJavavids.setUrl("http://feeds.feedburner.com/javavids?format=xml");
-		blogJavavids.setUser(userTest);
-		blogRepository.save(blogJavavids);
+		// Create test tournament
+		Tournament testTournament = new Tournament();
+		Categorie testCategorie = new Categorie();
+		testTournament.setName("testTournament");
+		testTournament.setStartDate(new Date());
+		testTournament.setEndDate(new Date());
+		List<Categorie> categories = new ArrayList<Categorie>();
+		categories.add(testCategorie);
+		testTournament.setCategories(categories);
+		tournamentRepository.save(testTournament);
 		
-		Item item1 = new Item();
-		item1.setBlog(blogJavavids);
-		item1.setTitle("first");
-		item1.setLink("http://www.javavids.com");
-		item1.setPublishedDate(new Date());
-		itemRepository.save(item1);
-		
-		Item item2 = new Item();
-		item2.setBlog(blogJavavids);
-		item2.setTitle("second");
-		item2.setLink("http://www.javavids.com");
-		item2.setPublishedDate(new Date());
-		itemRepository.save(item2);
+		// Create test categorie
+		testCategorie.setTournament(testTournament);
+		testCategorie.setMatchType(matchType.HE);
+		testCategorie.setStrengthCategorieType(StrengthCategorieType.SIX);
+		testCategorie.setAgeCategorieType(AgeCategorieType.OPEN);
+		categorieRepository.save(testCategorie);
 	}
 }
