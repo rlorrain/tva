@@ -22,7 +22,7 @@ import nl.lorrain.tva.repository.UserRepository;
 import nl.lorrain.tva.type.AgeCategorieType;
 import nl.lorrain.tva.type.RoleType;
 import nl.lorrain.tva.type.StrengthCategorieType;
-import nl.lorrain.tva.type.matchType;
+import nl.lorrain.tva.type.MatchType;
 
 @Service
 public class InitDbService {
@@ -95,9 +95,27 @@ public class InitDbService {
 		
 		// Create test categorie
 		testCategorie.setTournament(testTournament);
-		testCategorie.setMatchType(matchType.HE);
+		testCategorie.setMatchType(MatchType.HE);
 		testCategorie.setStrengthCategorieType(StrengthCategorieType.SIX);
 		testCategorie.setAgeCategorieType(AgeCategorieType.OPEN);
 		categorieRepository.save(testCategorie);
+		
+		// Create test tournament 2
+		Tournament testTournament2 = new Tournament();
+		Categorie testCategorie2 = new Categorie();
+		testTournament2.setName("testTournament2");
+		testTournament2.setStartDate(new Date());
+		testTournament2.setEndDate(new Date());
+		List<Categorie> categories2 = new ArrayList<Categorie>();
+		categories2.add(testCategorie2);
+		testTournament2.setCategories(categories2);
+		tournamentRepository.save(testTournament2);
+				
+		// Create test categorie 2
+		testCategorie2.setTournament(testTournament2);
+		testCategorie2.setMatchType(MatchType.DD);
+		testCategorie2.setStrengthCategorieType(StrengthCategorieType.SEVEN);
+		testCategorie2.setAgeCategorieType(AgeCategorieType.TWENTYFIVE);
+		categorieRepository.save(testCategorie2);
 	}
 }

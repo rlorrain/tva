@@ -1,5 +1,6 @@
 package nl.lorrain.tva.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Tournament {
+public class Tournament implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
@@ -24,13 +27,11 @@ public class Tournament {
 	
 	@OneToMany(mappedBy = "tournament", cascade = CascadeType.REMOVE)
 	private List<Categorie> Categories;
+	
+	public Tournament(){}
 
 	public Integer getId() {
 		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getName() {

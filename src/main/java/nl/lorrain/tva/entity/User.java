@@ -1,5 +1,6 @@
 package nl.lorrain.tva.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,7 +20,9 @@ import nl.lorrain.tva.annotation.UniqueEmail;
 import nl.lorrain.tva.annotation.UniqueUsername;
 
 @Entity
-public class User {
+public class User implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
@@ -47,6 +50,8 @@ public class User {
 
 	@OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE)
 	private List<Blog> blogs;
+	
+	public User(){}
 
 	public Boolean getEnabled() {
 		return enabled;
@@ -98,9 +103,5 @@ public class User {
 
 	public Integer getId() {
 		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 }

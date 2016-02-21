@@ -51,13 +51,17 @@
     margin-top: 12px;
     margin-left: 5px;
 }
+
+ul.nav.navbar-nav.navbar-right {
+	padding-right: 10px;
+}
 </style>
 
 <tilesx:useAttribute name="current" />
 
-<div class="container">
+
 	<!-- Static navbar -->
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
@@ -104,7 +108,7 @@
 			</div><!--/.nav-collapse -->
 		</div><!--/.container-fluid -->
 	</nav>
-</div><!-- /container -->
+
 
 <!-- Modal login -->
 <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

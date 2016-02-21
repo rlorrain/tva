@@ -1,5 +1,6 @@
 package nl.lorrain.tva.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,7 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Item {
+public class Item implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
@@ -28,6 +31,8 @@ public class Item {
 	@ManyToOne
 	@JoinColumn(name="blog_id")
 	private Blog blog;
+	
+	public Item(){}
 
 	public Blog getBlog() {
 		return blog;
@@ -39,10 +44,6 @@ public class Item {
 
 	public Integer getId() {
 		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getTitle() {

@@ -25,14 +25,13 @@
 </head>
 <body>
 
-	<br>
-
 	<tiles:insertAttribute name="navbar-top" />
+	
+<%-- 	<tiles:insertAttribute name="banner" /> --%>
+	
+	<tiles:insertAttribute name="breadcrumbs" />
 
 	<tiles:insertAttribute name="body" />
-
-	<br>
-	<br>
 
 	<tiles:insertAttribute name="footer" />
 

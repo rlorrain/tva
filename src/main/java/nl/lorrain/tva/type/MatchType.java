@@ -1,5 +1,5 @@
 package nl.lorrain.tva.type;
 
-public enum matchType {
+public enum MatchType {
 	HE, HD, DE, DD, GD
 }

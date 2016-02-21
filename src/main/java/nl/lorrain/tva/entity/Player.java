@@ -1,5 +1,6 @@
 package nl.lorrain.tva.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -11,8 +12,10 @@ import org.hibernate.validator.constraints.Email;
 import nl.lorrain.tva.type.GenderType;
 
 @Entity
-public class Player {
+public class Player implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -31,13 +34,11 @@ public class Player {
 	private String email;
 	
 	private String phoneNumber;
+	
+	public Player(){}
 
 	public Integer getId() {
 		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getFirstName() {

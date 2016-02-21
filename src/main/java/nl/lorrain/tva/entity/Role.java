@@ -1,5 +1,6 @@
 package nl.lorrain.tva.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,7 +12,9 @@ import javax.persistence.ManyToMany;
 import nl.lorrain.tva.type.RoleType;
 
 @Entity
-public class Role {
+public class Role implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
@@ -21,6 +24,8 @@ public class Role {
 
 	@ManyToMany(mappedBy="roles", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<User> users;
+	
+	public Role(){}
 
 	public List<User> getUsers() {
 		return users;
@@ -32,10 +37,6 @@ public class Role {
 
 	public Integer getId() {
 		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getName() {

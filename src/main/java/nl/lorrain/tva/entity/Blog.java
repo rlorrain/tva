@@ -1,5 +1,6 @@
 package nl.lorrain.tva.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,7 +15,9 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.URL;
 
 @Entity
-public class Blog {
+public class Blog implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
@@ -33,6 +36,15 @@ public class Blog {
 	
 	@OneToMany(mappedBy="blog", cascade=CascadeType.REMOVE)
 	private List<Item> items;
+	
+	public Blog(){}
+	
+	public Blog(String url, String name, User user) {
+		super();
+		this.url = url;
+		this.name = name;
+		this.user = user;
+	}
 
 	public List<Item> getItems() {
 		return items;
@@ -52,10 +64,6 @@ public class Blog {
 
 	public Integer getId() {
 		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getUrl() {

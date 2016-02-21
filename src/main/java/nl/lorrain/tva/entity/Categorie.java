@@ -1,5 +1,7 @@
 package nl.lorrain.tva.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,10 +10,12 @@ import javax.persistence.ManyToOne;
 
 import nl.lorrain.tva.type.AgeCategorieType;
 import nl.lorrain.tva.type.StrengthCategorieType;
-import nl.lorrain.tva.type.matchType;
+import nl.lorrain.tva.type.MatchType;
 
 @Entity
-public class Categorie {
+public class Categorie implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
@@ -21,20 +25,18 @@ public class Categorie {
 	@JoinColumn(name = "tournament_id")
 	private Tournament tournament;
 	
-	private Enum<matchType> matchType;
+	private Enum<MatchType> matchType;
 	
 	private Enum<AgeCategorieType> ageCategorieType;
 	
 	private Enum<StrengthCategorieType> strengthCategorieType;
+	
+	public Categorie(){}
 
 	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
 	public Tournament getTournament() {
 		return tournament;
 	}
@@ -43,11 +45,11 @@ public class Categorie {
 		this.tournament = tournament;
 	}
 
-	public Enum<matchType> getMatchType() {
+	public Enum<MatchType> getMatchType() {
 		return matchType;
 	}
 
-	public void setMatchType(Enum<matchType> matchType) {
+	public void setMatchType(Enum<MatchType> matchType) {
 		this.matchType = matchType;
 	}
 
