@@ -61,9 +61,7 @@ table.table tr.tournamentRow td div a.btn {
       										</h4>
     									</div>
     									<div class="custom-col-3">
-    										<a class="btn btn-primary btn-xs" role="button" data-toggle="collapse" data-parent="#accordion" href="#${tournament.name}" aria-expanded="true" aria-controls="${tournament.name}">
-          									Info
-        									</a>
+    										<a href="#" class="btn btn-success btn-xs">inschrijven</a>
     									</div>
     								</div>
     								<div id="${tournament.name}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">

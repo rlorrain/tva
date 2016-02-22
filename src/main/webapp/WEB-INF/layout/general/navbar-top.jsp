@@ -59,7 +59,7 @@ ul.nav.navbar-nav.navbar-right {
 
 <tilesx:useAttribute name="current" />
 
-
+<div class="container">
 	<!-- Static navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
@@ -81,11 +81,23 @@ ul.nav.navbar-nav.navbar-right {
 					<li class="${current == 'tournaments' ? 'active' : ''}">
 						<a href='<spring:url value="/tournaments.html" />'>Tournaments</a>
 					</li>
+					<li class="${current == 'events' ? 'active' : ''}">
+						<a href='<spring:url value="/events.html" />'>Events</a>
+					</li>
+					<li class="${current == 'matchmaker' ? 'active' : ''}">
+						<a href='<spring:url value="/matchmaker.html" />'>MatchMaker</a>
+					</li>
+					<li class="${current == 'tennis-kids' ? 'active' : ''}">
+						<a href='<spring:url value="/tennis-kids.html" />'>Tennis Kids</a>
+					</li>
 					<security:authorize access="isAuthenticated()">  
 						<li class="${current == 'account' ? 'active' : ''}">
 							<a href='<spring:url value="/account.html" />'>My account</a>
 						</li>
-					</security:authorize>					
+					</security:authorize>
+					<li class="${current == 'contact' ? 'active' : ''}">
+						<a href='<spring:url value="/contact.html" />'>Contact</a>
+					</li>					
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<security:authorize access="!isAuthenticated()">
@@ -108,7 +120,7 @@ ul.nav.navbar-nav.navbar-right {
 			</div><!--/.nav-collapse -->
 		</div><!--/.container-fluid -->
 	</nav>
-
+</div>
 
 <!-- Modal login -->
 <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

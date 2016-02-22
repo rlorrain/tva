@@ -10,8 +10,10 @@
 		<put-attribute name="banner" value="/WEB-INF/layout/general/banner.jsp" />
 		<put-attribute name="breadcrumbs" value="/WEB-INF/layout/general/breadcrumbs.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/layout/general/footer.jsp" />
-		<put-attribute name="breadcrumb1" cascade="true" value="none" />
+		<put-attribute name="breadcrumb1" cascade="true" value="Home" />
+		<put-attribute name="breadcrumb1url" cascade="true" value="/index.html" />
 		<put-attribute name="breadcrumb2" cascade="true" value="none" />
+		<put-attribute name="breadcrumb2url" cascade="true" value="none" />
 		<put-attribute name="breadcrumb3" cascade="true" value="none" />
 		<put-attribute name="breadcrumb4" cascade="true" value="none" />
 		<put-attribute name="breadcrumb5" cascade="true" value="none" />
@@ -21,15 +23,30 @@
 		<put-attribute name="title" value="Index" />
 		<put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
 		<put-attribute name="current" cascade="true" value="index" />
-		<put-attribute name="breadcrumb1" cascade="true" value="index" />
-		<put-attribute name="breadcrumb2" cascade="true" value="index" />
 	</definition>
 	
 	<definition name="tournaments" extends="common">
 		<put-attribute name="title" value="Tournaments" />
 		<put-attribute name="body" value="/WEB-INF/jsp/tournaments.jsp" />
 		<put-attribute name="current" cascade="true" value="tournaments" />
-		<put-attribute name="breadcrumb1" cascade="true" value="tournaments" />
+	</definition>
+	
+	<definition name="events" extends="common">
+		<put-attribute name="title" value="Events" />
+		<put-attribute name="body" value="/WEB-INF/jsp/events.jsp" />
+		<put-attribute name="current" cascade="true" value="events" />
+	</definition>
+	
+	<definition name="matchmaker" extends="common">
+		<put-attribute name="title" value="MatchMaker" />
+		<put-attribute name="body" value="/WEB-INF/jsp/matchmaker.jsp" />
+		<put-attribute name="current" cascade="true" value="matchmaker" />
+	</definition>
+	
+	<definition name="tennis-kids" extends="common">
+		<put-attribute name="title" value="Tennis Kids" />
+		<put-attribute name="body" value="/WEB-INF/jsp/tennis-kids.jsp" />
+		<put-attribute name="current" cascade="true" value="tennis-kids" />
 	</definition>
 	
 	<definition name="users" extends="common">
@@ -42,7 +59,8 @@
 		<put-attribute name="title" value="User Details" />
 		<put-attribute name="body" value="/WEB-INF/jsp/user-detail.jsp" />
 		<put-attribute name="current" cascade="true" value="user-detail" />
-		<put-attribute name="breadcrumb1" cascade="true" value="users" />
+		<put-attribute name="breadcrumb2" cascade="true" value="users" />
+		<put-attribute name="breadcrumb2url" cascade="true" value="/users.html" />
 	</definition>
 	
 	<definition name="account" extends="common">
@@ -61,5 +79,11 @@
 		<put-attribute name="title" value="Login" />
 		<put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
 		<put-attribute name="current" cascade="true" value="login" />
+	</definition>
+	
+	<definition name="contact" extends="common">
+		<put-attribute name="title" value="Contact" />
+		<put-attribute name="body" value="/WEB-INF/jsp/contact.jsp" />
+		<put-attribute name="current" cascade="true" value="contact" />
 	</definition>
 </tiles-definitions>

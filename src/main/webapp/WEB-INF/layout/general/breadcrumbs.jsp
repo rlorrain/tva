@@ -6,7 +6,9 @@
 
 <tilesx:useAttribute name="current" />	
 <tilesx:useAttribute name="breadcrumb1" />
+<tilesx:useAttribute name="breadcrumb1url" />
 <tilesx:useAttribute name="breadcrumb2" />
+<tilesx:useAttribute name="breadcrumb2url" />
 <tilesx:useAttribute name="breadcrumb3" />
 <tilesx:useAttribute name="breadcrumb4" />
 <tilesx:useAttribute name="breadcrumb5" />
@@ -16,22 +18,24 @@
 <br>
 
 <div>
-	<ol class="breadcrumb">
-		<c:if test="${breadcrumb1 != 'none'}">
-			<li><a href="#">${breadcrumb1}</a></li>
-		</c:if>
-	  	<c:if test="${breadcrumb2 != 'none'}">
-			<li><a href="#">${breadcrumb2}</a></li>
-		</c:if>
-	  	<c:if test="${breadcrumb3 != 'none'}">
-			<li><a href="#">${breadcrumb3}</a></li>
-		</c:if>
-		<c:if test="${breadcrumb4 != 'none'}">
-			<li><a href="#">${breadcrumb4}</a></li>
-		</c:if>
-		<c:if test="${breadcrumb5 != 'none'}">
-			<li><a href="#">${breadcrumb5}</a></li>
-		</c:if>
-	  	<li class="active">${current}</li>
-	</ol>
+	<c:if test="${current != 'index'}"> 
+		<ol class="breadcrumb">
+			<c:if test="${breadcrumb1 != 'none'}">
+				<li><a href="${breadcrumb1url}">${breadcrumb1}</a></li>
+			</c:if>
+		  	<c:if test="${breadcrumb2 != 'none'}">
+				<li><a href="${breadcrumb2url}">${breadcrumb2}</a></li>
+			</c:if>
+		  	<c:if test="${breadcrumb3 != 'none'}">
+				<li><a href="#">${breadcrumb3}</a></li>
+			</c:if>
+			<c:if test="${breadcrumb4 != 'none'}">
+				<li><a href="#">${breadcrumb4}</a></li>
+			</c:if>
+			<c:if test="${breadcrumb5 != 'none'}">
+				<li><a href="#">${breadcrumb5}</a></li>
+			</c:if>
+		  	<li class="active">${current}</li>
+		</ol>
+	</c:if>
 </div>
