@@ -1,0 +1,42 @@
+@CHARSET "UTF-8";
+
+#bannerHome.row {
+	margin: 2px;
+	padding: 0px;
+	border: none;
+	height: 150px;
+	background-image: url("../img/claycourt_3.png");
+	background-position: center;
+	background-repeat: repeat-x;
+}
+
+#bannerTournament.row {
+	margin: 0px;
+	padding: 0px;
+	border-style: solid;
+	border-color: red;
+	border-width: thin;
+	height: auto;
+}
+
+div.row div.bannerText {
+	padding-top: 30px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+}
+
+div.row div.bannerText span.text1 {
+	color: white;
+	font-size: 100px;
+	font-weight: bold;
+	font-family: sans-serif;
+	font-style: oblique;	
+}
+
+div.row div.bannerText span.text2 {
+	color: white;
+	font-size: 50px;
+	font-weight: lighter;
+	font-family: cursive;
+	font-style: italic;
+}
