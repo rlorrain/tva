@@ -21,7 +21,7 @@
 	<c:if test="${current != 'index'}"> 
 		<ol class="breadcrumb">
 			<c:if test="${breadcrumb1 != 'none'}">
-				<li><a href="${breadcrumb1url}">${breadcrumb1}</a></li>
+				<li><a href="${breadcrumb1url}"><span class="glyphicon glyphicon-home"></span> ${breadcrumb1}</a></li>
 			</c:if>
 		  	<c:if test="${breadcrumb2 != 'none'}">
 				<li><a href="${breadcrumb2url}">${breadcrumb2}</a></li>

@@ -22,21 +22,21 @@ div.row div.jumbotron {
 			<div class="well well-sm">
 				<h2>Toernooien</h2>
 				<p>Welke toernooien zijn er gepland?</p>
-				<a href="/tournaments.html" class="btn btn-primary btn-sm">Ontdek</a>
+				<a href="/tournaments.html" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-hand-right"></span> bekijk</a>
 			</div><!-- /text-center -->
 		</div>
 		<div class="col-md-4 text-center">
 			<div class="well well-sm">
 				<h2>Evenementen</h2>
 				<p>Welke evenementen zijn er gepland?</p>
-				<a href="/events.html" class="btn btn-primary btn-sm">Ontdek</a>
+				<a href="/events.html" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-hand-right"></span> bekijk</a>
 			</div><!-- /text-center -->
 		</div>
 		<div class="col-md-4 text-center">
 			<div class="well well-sm">
 				<h2>Match Maker</h2>
 				<p>Zoekt u een tennispartner?</p>
-				<a href="/matchmaker.html" class="btn btn-primary btn-sm">Ontdek</a>
+				<a href="/matchmaker.html" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-hand-right"></span> bekijk</a>
 			</div><!-- /text-center -->
 		</div>
 	</div>
@@ -44,19 +44,19 @@ div.row div.jumbotron {
 		<div class="col-md-4 text-center">
 			<div class="well well-sm">
 				<h2>Tennis Lessen</h2>
-				<a href="#" class="btn btn-primary btn-sm">Ontdek</a>
+				<a href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-hand-right"></span> bekijk</a>
 			</div><!-- /text-center -->
 		</div>
 		<div class="col-md-4 text-center">
 			<div class="well well-sm">
 				<h2>Tennis Kids</h2>
-				<a href="/tennis-kids.html" class="btn btn-primary btn-sm">Ontdek</a>
+				<a href="/tennis-kids.html" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-hand-right"></span> bekijk</a>
 			</div><!-- /text-center -->
 		</div>
 		<div class="col-md-4 text-center">
 			<div class="well well-sm">
 				<h2>Contact</h2>
-				<a href="/contact.html" class="btn btn-primary btn-sm">Ontdek</a>
+				<a href="/contact.html" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-hand-right"></span> bekijk</a>
 			</div><!-- /text-center -->
 		</div>
 	</div>

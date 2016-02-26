@@ -19,7 +19,7 @@ table.table tr.tournamentRow td div {
 }
 table.table tr.tournamentRow td div.custom-col-1 {
 	float: left;
-	width: 50px;
+	width: 70px;
 }
 table.table tr.tournamentRow td div.custom-col-2 {
 	float: left;
@@ -52,7 +52,7 @@ table.table tr.tournamentRow td div a.btn {
     								<div class="panel-heading row" role="tab" id="headingOne">
     									<div class="custom-col-1">
     										<a class="btn btn-primary btn-xs" role="button" data-toggle="collapse" data-parent="#accordion" href="#${tournament.name}" aria-expanded="true" aria-controls="${tournament.name}">
-          									Info
+          									<span class="glyphicon glyphicon-info-sign"></span> Info
         									</a>
     									</div>
     									<div class="custom-col-2">
@@ -61,7 +61,7 @@ table.table tr.tournamentRow td div a.btn {
       										</h4>
     									</div>
     									<div class="custom-col-3">
-    										<a href="#" class="btn btn-success btn-xs">inschrijven</a>
+    										<a href="#" class="">inschrijven</a>
     									</div>
     								</div>
     								<div id="${tournament.name}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">

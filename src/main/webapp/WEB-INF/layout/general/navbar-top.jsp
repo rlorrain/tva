@@ -105,11 +105,13 @@ ul.nav.navbar-nav.navbar-right {
 							<button type="button" id="registerButton" class="btn btn-default btn-xs navbar-btn" >Register</button>
 						</li>
 						<li class="${current == 'login' ? 'active' : ''}">
-							<button type="button" class="btn btn-default btn-xs navbar-btn" data-toggle="modal" data-target="#modalLogin">Login</button>
+							<button type="button" class="btn btn-default btn-xs navbar-btn" data-toggle="modal" data-target="#modalLogin">
+							<span class="glyphicon glyphicon-log-in"></span> Login</button>
 						</li>
 					</security:authorize>
 					<security:authorize access="isAuthenticated()">	
-						<li><span><a type="button" class="btn btn-primary btn-xs navbar-btn" href='<spring:url value="/logout" />'>Logout</a></span></li>
+						<li><span><a type="button" class="btn btn-primary btn-xs navbar-btn" href='<spring:url value="/logout" />'>
+						<span class="glyphicon glyphicon-log-out"></span> Logout</a></span></li>
 					</security:authorize>
 					<security:authorize access="hasRole('ROLE_ADMIN')"> 
 						<li class="${current == 'users' ? 'active' : ''}">
