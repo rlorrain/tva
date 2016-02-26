@@ -25,6 +25,8 @@ public class Tournament implements Serializable {
 	
 	private Date endDate;
 	
+	private String infoText;
+
 	@OneToMany(mappedBy = "tournament", cascade = CascadeType.REMOVE)
 	private List<Categorie> Categories;
 	
@@ -56,6 +58,14 @@ public class Tournament implements Serializable {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+	
+	public String getInfoText() {
+		return infoText;
+	}
+
+	public void setInfoText(String infoText) {
+		this.infoText = infoText;
 	}
 
 	public List<Categorie> getCategories() {

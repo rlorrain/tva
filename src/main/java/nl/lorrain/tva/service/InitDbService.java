@@ -88,6 +88,7 @@ public class InitDbService {
 		testTournament.setName("testTournament");
 		testTournament.setStartDate(new Date());
 		testTournament.setEndDate(new Date());
+		testTournament.setInfoText("Dit is infotext.");
 		List<Categorie> categories = new ArrayList<Categorie>();
 		categories.add(testCategorie);
 		testTournament.setCategories(categories);
@@ -106,6 +107,7 @@ public class InitDbService {
 		testTournament2.setName("testTournament2");
 		testTournament2.setStartDate(new Date());
 		testTournament2.setEndDate(new Date());
+		testTournament2.setInfoText("Dit is infotext.");
 		List<Categorie> categories2 = new ArrayList<Categorie>();
 		categories2.add(testCategorie2);
 		testTournament2.setCategories(categories2);

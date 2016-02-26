@@ -7,8 +7,6 @@ div.row div.jumbotron {
 }
 </style>
 
-<br>
-
 <div class="container">
 	<div class="row">
 		<div class="jumbotron">

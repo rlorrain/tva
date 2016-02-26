@@ -15,8 +15,11 @@
 		<put-attribute name="breadcrumb2" cascade="true" value="none" />
 		<put-attribute name="breadcrumb2url" cascade="true" value="none" />
 		<put-attribute name="breadcrumb3" cascade="true" value="none" />
+		<put-attribute name="breadcrumb3url" cascade="true" value="none" />
 		<put-attribute name="breadcrumb4" cascade="true" value="none" />
+		<put-attribute name="breadcrumb4url" cascade="true" value="none" />
 		<put-attribute name="breadcrumb5" cascade="true" value="none" />
+		<put-attribute name="breadcrumb5url" cascade="true" value="none" />
 	</definition>
 	
 	<definition name="index" extends="common">

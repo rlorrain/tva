@@ -52,17 +52,86 @@
     margin-left: 5px;
 }
 
-ul.nav.navbar-nav.navbar-right {
-	padding-right: 10px;
+.navbar-custom {
+    background-color: #47476b;
+    color: white;
+    border-radius: 0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:fuchsia;
+}
+
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: black;
+    background-color:transparent;
+}
+
+#facebookIcon {
+	padding: 0px;
+	margin: 0px;
+	height: 25px;
+}
+
+#linkedinIcon {
+	padding: 0px;
+	margin: 0px;
+	height: 25px;
+}
+
+body {
+	padding-top: 50px;
 }
 </style>
 
 <tilesx:useAttribute name="current" />
 
-<div class="container">
+	<!-- Fixed navbar -->
+	<nav id="utilityBar" class="navbar navbar-custom navbar-fixed-top">
+	
+		<div class="container-fluid container">
+			<div id="utilityBarContainer" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-left">
+					<li>
+						<a href='<spring:url value="#" />'>
+							<img id="facebookIcon" class="img img-responsive" alt="facebookIcon" src="/static/img/icons/facebook_icon.png">
+						</a>
+					</li>
+					<li>
+						<a href='<spring:url value="#" />'>
+							<img id="linkedinIcon" class="img img-responsive" alt="linkedinIcon" src="/static/img/icons/linkedin_icon.png">
+						</a>
+					</li>						
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+						<security:authorize access="!isAuthenticated()">
+							<li class="${current == 'user-register' ? 'active' : ''}">
+								<button type="button" id="registerButton" class="btn btn-default btn-xs navbar-btn" >Register</button>
+							</li>
+							<li class="${current == 'login' ? 'active' : ''}">
+								<button type="button" class="btn btn-default btn-xs navbar-btn" data-toggle="modal" data-target="#modalLogin">
+								<span class="glyphicon glyphicon-log-in"></span> Login</button>
+							</li>
+						</security:authorize>
+						<security:authorize access="isAuthenticated()">	
+							<li><span><a type="button" class="btn btn-primary btn-xs navbar-btn" href='<spring:url value="/logout" />'>
+							<span class="glyphicon glyphicon-log-out"></span> Logout</a></span></li>
+						</security:authorize>
+						<security:authorize access="hasRole('ROLE_ADMIN')"> 
+							<li class="${current == 'users' ? 'active' : ''}">
+								<span><a class="btn btn-primary btn-xs navbar-btn" href='<spring:url value="/users.html" />'><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></span>
+							</li>
+						</security:authorize>
+				</ul>
+			</div><!-- /.nav-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav><!-- / .navbar -->
+
 	<!-- Static navbar -->
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container-fluid">
+	<nav class="navbar navbar-default navbar-static-top">	
+		
+		<!-- Navbar -->
+		<div class="container-fluid container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
@@ -71,7 +140,7 @@ ul.nav.navbar-nav.navbar-right {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="<spring:url value="/" />">TVA</a>
+				<a class="navbar-brand" href="<spring:url value="/" />">T.O.C.</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
@@ -99,30 +168,9 @@ ul.nav.navbar-nav.navbar-right {
 						<a href='<spring:url value="/contact.html" />'>Contact</a>
 					</li>					
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<security:authorize access="!isAuthenticated()">
-						<li class="${current == 'user-register' ? 'active' : ''}">
-							<button type="button" id="registerButton" class="btn btn-default btn-xs navbar-btn" >Register</button>
-						</li>
-						<li class="${current == 'login' ? 'active' : ''}">
-							<button type="button" class="btn btn-default btn-xs navbar-btn" data-toggle="modal" data-target="#modalLogin">
-							<span class="glyphicon glyphicon-log-in"></span> Login</button>
-						</li>
-					</security:authorize>
-					<security:authorize access="isAuthenticated()">	
-						<li><span><a type="button" class="btn btn-primary btn-xs navbar-btn" href='<spring:url value="/logout" />'>
-						<span class="glyphicon glyphicon-log-out"></span> Logout</a></span></li>
-					</security:authorize>
-					<security:authorize access="hasRole('ROLE_ADMIN')"> 
-						<li class="${current == 'users' ? 'active' : ''}">
-							<span><a class="btn btn-primary btn-xs navbar-btn" href='<spring:url value="/users.html" />'><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></span>
-						</li>
-					</security:authorize>
-				</ul>
-			</div><!--/.nav-collapse -->
-		</div><!--/.container-fluid -->
-	</nav>
-</div>
+			</div><!-- /.nav-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav><!-- / .navbar -->
 
 <!-- Modal login -->
 <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

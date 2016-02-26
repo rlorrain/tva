@@ -37,43 +37,47 @@ table.table tr.tournamentRow td div a.btn {
 
 <div class="container">
 
+	<div id="bannerTournament" class="row">
+		<img class="img img-responsive" alt="bannerTournament" src="/static/img/claycourt_5.png">
+	</div>
+
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Planned Tournaments</th>
+				<th>Geplande Toernooien</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${tournaments}" var="tournament">
-					<tr class="tournamentRow">
-						<td>
-							<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  								<div class="panel panel-default">
-    								<div class="panel-heading row" role="tab" id="headingOne">
-    									<div class="custom-col-1">
-    										<a class="btn btn-primary btn-xs" role="button" data-toggle="collapse" data-parent="#accordion" href="#${tournament.name}" aria-expanded="true" aria-controls="${tournament.name}">
-          									<span class="glyphicon glyphicon-info-sign"></span> Info
-        									</a>
-    									</div>
-    									<div class="custom-col-2">
-    										<h4 class="panel-title">
-        										<c:out value="${tournament.name}" />	
-      										</h4>
-    									</div>
-    									<div class="custom-col-3">
-    										<a href="#" class="">inschrijven</a>
-    									</div>
-    								</div>
-    								<div id="${tournament.name}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-      									<div class="panel-body">
-        								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      									</div>
-    								</div>
-  								</div>
-  							</div>
-						</td>
-					</tr>
-			</c:forEach>
+			<tr class="tournamentRow">
+				<td>
+					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+						<c:forEach items="${tournaments}" var="tournament">
+	  						<div class="panel panel-default">
+	    						<div class="panel-heading row" role="tab" id="headingOne">
+	    							<div class="custom-col-1">
+	    								<a class="btn btn-primary btn-xs" role="button" data-toggle="collapse" data-parent="#accordion" href="#${tournament.name}" aria-expanded="true" aria-controls="${tournament.name}">
+	          								<span class="glyphicon glyphicon-info-sign"></span> Info
+	        							</a>
+	    							</div>
+	    							<div class="custom-col-2">
+	    								<h4 class="panel-title">
+	        								<span><c:out value="${tournament.name}" /></span>	
+	      								</h4>
+	    							</div>
+	    							<div class="custom-col-3">
+	    								<a href="#" class="">inschrijven</a>
+	    							</div>
+	    						</div>
+	    						<div id="${tournament.name}" class="panel-collapse collapsing" role="tabpanel" aria-labelledby="headingOne">
+	      							<div class="panel-body">
+	        							<c:out value="${tournament.infoText}" />
+	      							</div>
+	    						</div>
+	  						</div>
+  						</c:forEach>
+  					</div>
+				</td>
+			</tr>
 		</tbody>
 	</table>
 

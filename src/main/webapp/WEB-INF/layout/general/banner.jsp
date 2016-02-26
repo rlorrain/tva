@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
-<style>
-#banner {
-	height: 150px;
-}
-</style>	
-	
-<div id="banner" class="row clearfix">
-	<img class="img-responsive" alt="TVA" src="/static/images/tennis_banner1.jpg">
+<div id="bannerHome" class="row" >
+	<div class="bannerText">
+		<div>
+			<span class="text1">TOC</span><span class="text2"> e-Kantine</span>
+		</div>
+	</div>
 </div>
