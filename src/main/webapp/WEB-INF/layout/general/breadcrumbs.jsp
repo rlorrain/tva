@@ -16,10 +16,6 @@
 <tilesx:useAttribute name="breadcrumb5" />
 <tilesx:useAttribute name="breadcrumb5url" />
 
-<br>
-<br>
-<br>
-
 <div>
 	<c:if test="${current != 'index'}"> 
 		<div class="container">

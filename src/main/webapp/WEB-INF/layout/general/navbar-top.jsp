@@ -52,19 +52,60 @@
     margin-left: 5px;
 }
 
+.navbar {
+	min-height: 20px !important;
+	border-bottom-color: #47476b;
+	border-bottom-style: groove;
+	border-bottom-width: thin;
+}
+
+.navbar li a {
+	color: #47476b;
+}
+
+.navbar li a:hover {
+	background-color: transparent;
+	color: black;
+}
+
+.navbar li.active {
+	border-left-color: #47476b;
+	border-left-style: groove;
+	border-left-width: thin;
+	border-right-color: #47476b;
+	border-right-style: groove;
+	border-right-width: thin;
+	background-color: #f2f2f2;
+}
+	
 .navbar-custom {
     background-color: #47476b;
     color: white;
-    border-radius: 0;
 }
 
 .navbar-custom .navbar-nav > li > a {
-    color:fuchsia;
+    color: aqua;
+    padding: 0px;
 }
 
-.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
-    color: black;
-    background-color:transparent;
+.navbar-custom .navbar-nav  li {
+	margin: 0px !important;
+	padding-top: 5px !important; 
+	padding-bottom: 5px !important;
+	padding-right: 5px !important;
+}
+
+.navbar-custom .navbar-nav  li  button {
+	margin: 0px !important;
+}
+
+.navbar-custom .navbar-nav  li .btn:hover {
+	margin: 0px !important;
+	background-color: #f2f2f2;
+}
+
+.navbar-custom .navbar-nav  li  a {
+	margin: 0px !important;
 }
 
 #facebookIcon {
@@ -80,7 +121,7 @@
 }
 
 body {
-	padding-top: 50px;
+	padding-top: 35px;
 }
 </style>
 
@@ -104,31 +145,38 @@ body {
 					</li>						
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-						<security:authorize access="!isAuthenticated()">
-							<li class="${current == 'user-register' ? 'active' : ''}">
-								<button type="button" id="registerButton" class="btn btn-default btn-xs navbar-btn" >Register</button>
-							</li>
-							<li class="${current == 'login' ? 'active' : ''}">
-								<button type="button" class="btn btn-default btn-xs navbar-btn" data-toggle="modal" data-target="#modalLogin">
-								<span class="glyphicon glyphicon-log-in"></span> Login</button>
-							</li>
-						</security:authorize>
-						<security:authorize access="isAuthenticated()">	
-							<li><span><a type="button" class="btn btn-primary btn-xs navbar-btn" href='<spring:url value="/logout" />'>
-							<span class="glyphicon glyphicon-log-out"></span> Logout</a></span></li>
-						</security:authorize>
-						<security:authorize access="hasRole('ROLE_ADMIN')"> 
-							<li class="${current == 'users' ? 'active' : ''}">
-								<span><a class="btn btn-primary btn-xs navbar-btn" href='<spring:url value="/users.html" />'><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></span>
-							</li>
-						</security:authorize>
+					<security:authorize access="!isAuthenticated()">
+						<li class="${current == 'user-register' ? 'active' : ''}">
+							<button type="button" id="registerButton" class="btn btn-default btn-xs navbar-btn" >Registreer</button>
+						</li>
+						<li class="${current == 'login' ? 'active' : ''}">
+							<button type="button" class="btn btn-default btn-xs navbar-btn" data-toggle="modal" data-target="#modalLogin">
+							<span class="glyphicon glyphicon-log-in"></span> Log in</button>
+						</li>
+					</security:authorize>
+					<security:authorize access="isAuthenticated()">	
+						<li>
+							<span>
+								<a type="button" class="btn btn-default btn-xs navbar-btn" href='<spring:url value="/logout" />'>
+								<span class="glyphicon glyphicon-log-out"></span> Log uit</a>
+							</span>
+						</li>
+					</security:authorize>
+					<security:authorize access="hasRole('ROLE_ADMIN')"> 
+						<li>
+							<span>
+								<a class="btn btn-default btn-xs navbar-btn" href='<spring:url value="/users.html" />'>
+								<span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+							</span>
+						</li>
+					</security:authorize>
 				</ul>
 			</div><!-- /.nav-collapse -->
 		</div><!-- /.container-fluid -->
 	</nav><!-- / .navbar -->
 
 	<!-- Static navbar -->
-	<nav class="navbar navbar-default navbar-static-top">	
+	<nav class="navbar navbar-static-top">	
 		
 		<!-- Navbar -->
 		<div class="container-fluid container">
@@ -148,13 +196,13 @@ body {
 						<a href='<spring:url value="/" />'>Home</a>
 					</li>
 					<li class="${current == 'tournaments' ? 'active' : ''}">
-						<a href='<spring:url value="/tournaments.html" />'>Tournaments</a>
+						<a href='<spring:url value="/tournaments.html" />'>Toernooien</a>
 					</li>
 					<li class="${current == 'events' ? 'active' : ''}">
 						<a href='<spring:url value="/events.html" />'>Events</a>
 					</li>
 					<li class="${current == 'matchmaker' ? 'active' : ''}">
-						<a href='<spring:url value="/matchmaker.html" />'>MatchMaker</a>
+						<a href='<spring:url value="/matchmaker.html" />'>Match Maker</a>
 					</li>
 					<li class="${current == 'tennis-kids' ? 'active' : ''}">
 						<a href='<spring:url value="/tennis-kids.html" />'>Tennis Kids</a>
@@ -178,18 +226,18 @@ body {
     	<div class="modal-content">
 	      	<div class="modal-header">
 	        	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-	        	<h4 class="modal-title" id="myModalLabel">Login</h4>
+	        	<h4 class="modal-title" id="myModalLabel">Log in</h4>
 	      	</div>
 	      	<div class="modal-body">
 	        
 	        <form class="form-signin" action="/login" method="POST">
-				<h2 class="form-signin-heading">Please sign in</h2>
+				<h2 class="form-signin-heading">Voer uw gegevens in:</h2>
 				<input type="text" name="username" class="form-control" placeholder="Name" required autofocus> 
 				<input type="password" name="password" class="form-control" placeholder="Password" required>
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Inloggen</button>
 				<br>
 				<div class="text-center">
-					<a href="#">Forgot password</a> | <a href='<spring:url value="register.html" />'>Register</a>
+					<a href="#">Wachtwoord vergeten</a> | <a href='<spring:url value="register.html" />'>Registreer</a>
 				</div>
 			</form>
 	        

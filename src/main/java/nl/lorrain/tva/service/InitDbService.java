@@ -85,7 +85,7 @@ public class InitDbService {
 		// Create test tournament
 		Tournament testTournament = new Tournament();
 		Categorie testCategorie = new Categorie();
-		testTournament.setName("testTournament");
+		testTournament.setName("Open dubbeltoernooi 2016");
 		testTournament.setStartDate(new Date());
 		testTournament.setEndDate(new Date());
 		testTournament.setInfoText("Dit is infotext.");
@@ -104,7 +104,7 @@ public class InitDbService {
 		// Create test tournament 2
 		Tournament testTournament2 = new Tournament();
 		Categorie testCategorie2 = new Categorie();
-		testTournament2.setName("testTournament2");
+		testTournament2.setName("Open zomertoernooi 2016");
 		testTournament2.setStartDate(new Date());
 		testTournament2.setEndDate(new Date());
 		testTournament2.setInfoText("Dit is infotext.");

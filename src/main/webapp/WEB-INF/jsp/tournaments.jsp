@@ -55,20 +55,20 @@ table.table tr.tournamentRow td div a.btn {
 	  						<div class="panel panel-default">
 	    						<div class="panel-heading row" role="tab" id="headingOne">
 	    							<div class="custom-col-1">
-	    								<a class="btn btn-primary btn-xs" role="button" data-toggle="collapse" data-parent="#accordion" href="#${tournament.name}" aria-expanded="true" aria-controls="${tournament.name}">
+	    								<a class="btn btn-primary btn-xs" role="button" data-toggle="collapse" data-parent="#accordion" href="#${tournament.id}" aria-expanded="true" aria-controls="${tournament.name}">
 	          								<span class="glyphicon glyphicon-info-sign"></span> Info
 	        							</a>
 	    							</div>
 	    							<div class="custom-col-2">
-	    								<h4 class="panel-title">
+	    								<h3 class="panel-title">
 	        								<span><c:out value="${tournament.name}" /></span>	
-	      								</h4>
+	      								</h3>
 	    							</div>
 	    							<div class="custom-col-3">
-	    								<a href="#" class="">inschrijven</a>
+	    								<a href="#" data-toggle="tooltip" title="Schrijf je in via toernooiklapper.nl!"> >> inschrijven</a>
 	    							</div>
 	    						</div>
-	    						<div id="${tournament.name}" class="panel-collapse collapsing" role="tabpanel" aria-labelledby="headingOne">
+	    						<div id="${tournament.id}" class="panel-collapse collapsing" role="tabpanel" aria-labelledby="headingOne">
 	      							<div class="panel-body">
 	        							<c:out value="${tournament.infoText}" />
 	      							</div>
@@ -83,4 +83,9 @@ table.table tr.tournamentRow td div a.btn {
 
 </div><!-- /container -->
 
+<script type="text/javascript">
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip()
+	})
+</script>
 
